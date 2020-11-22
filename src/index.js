@@ -4,11 +4,32 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// import Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery/dist/jquery.min.js";
+import "popper.js/dist/umd/popper.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+
+// setup Redux 
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware, compose} from "redux";
+import rootReducer from './Redux/Reducers/rootReducer';
+
+// redux-thunk 
+import thunk from "redux-thunk";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
