@@ -63,35 +63,6 @@ export default class Navbar extends Component {
                         {/* cartgroup */}
                         <ul className="navbar-nav nav_main_left ml-auto">
                             <div className="cartgroup ">
-                            {/* search */}
-                            <div className="searchion inline-b">
-                                <span className="visible_index nn">
-                                <i className="fas fa-search" />
-                                </span>
-                                <div className="searchmini">
-                                <form
-                                    action="/search"
-                                    method="get"
-                                    className="input-group"
-                                    role="search"
-                                >
-                                    <input
-                                    type="text"
-                                    name="query"
-                                    defaultValue
-                                    autoComplete="off"
-                                    placeholder="Tìm kiếm..."
-                                    className="button_gradient input-group-field visible_index"
-                                    />
-                                    <button
-                                    type="submit"
-                                    className="visible_index btn "
-                                    >
-                                    <span className="fa fa-search" />
-                                    </button>
-                                </form>
-                                </div>
-                            </div>
                             {/* login, logout */}
                             <div className="inline-b group_accout visible_index">
                                 <i className="fas fa-user-plus" />
