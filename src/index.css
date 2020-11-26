@@ -79,6 +79,12 @@ body {
 }
 
 /* search header */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .searchmini {
   width: 250px;
   height: 40px;
@@ -764,7 +770,7 @@ ul#cart-sidebar .no-item p {
 /* end products */
 
 /* begin modal quick-view-product */
-#quick-view-product .quick-view-product {
+ .quick-view-product {
   position: absolute;
   width: 991px;
   top: 5%;
@@ -790,6 +796,9 @@ ul#cart-sidebar .no-item p {
   text-align: center;
   line-height: 25px;
   border-radius: 0;
+}
+.close-window i{
+  color: #000;
 }
 
 .title-product {

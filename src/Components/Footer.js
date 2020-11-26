@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import logo from "../Assets/img/logo.png";
+import { NavLink, withRouter } from "react-router-dom";
 
 export default class Footer extends Component {
   render() {
@@ -9,9 +11,9 @@ export default class Footer extends Component {
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4">
                 <div className="widget_first_childs margin-top-50">
                     <div className="logo_footer" style={{ marginBottom: 12 }}>
-                    <a href="/" className="logo-wrapper">
-                        <img src="./img/logo.png" alt="logo " />
-                    </a>
+                    <NavLink to = "/" className="logo-wrapper">
+                        <img src={logo} alt="logo " />
+                    </NavLink>
                     </div>
                     <div className="widget-ft-top">
                     <div className="hotline_footer">

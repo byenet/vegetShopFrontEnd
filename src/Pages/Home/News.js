@@ -24,6 +24,7 @@ export default class News extends Component {
                         <img
                         className="lazyload loaded"
                         src="./img/img_blog1.jpg"
+                        alt = ""
                         />
                     </a>
                     <div className="date_blog">
@@ -60,7 +61,8 @@ export default class News extends Component {
                     <a className="img-blog" href>
                         <img
                         className="lazyload loaded"
-                        src="./img/img_blog2.jpg"
+                        src="./img/img_blog2.jpg" 
+                        alt=""
                         />
                     </a>
                     <div className="date_blog">

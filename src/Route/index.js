@@ -1,5 +1,9 @@
-import Login from "../Components/Login";
+import DetailProduct from "../Components/DetailProduct";
+import Login from "../Pages/Home/user/Login";
 import Home from "../Pages/Home/Home";
+import Register from "../Pages/Home/user/Register";
+import LoginAdmin from "../Pages/Admin/LoginAdmin";
+import Dashboard from "../Pages/Admin/Dashboard";
 
 
 
@@ -14,6 +18,26 @@ const routersHome = [
     exact: false,
     component: Login
   },
+  {
+    path: "/register",
+    exact: false,
+    component: Register
+  },
+  {
+    path: "/detail-product/:id",
+    exact: false,
+    component: DetailProduct
+  },
+  
+  
 ];
 
-export {routersHome}
+const routesAdmin = [
+  {
+    path: "/dashboard",
+    exact: false,
+    component: Dashboard,
+  },
+];
+
+export {routersHome, routesAdmin}
