@@ -3,22 +3,62 @@ import NumberFormat from "react-number-format";
 import { connect } from "react-redux";
 import {cartService} from "../../../Services/";
 import * as actionCart from "../../../Redux/Actions/cardActions";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 class CartItem extends Component {
-  handleDeleteCart = () => {
-    cartService.removeCart(this.props.cart.idcart, this.props.user.token)
-    .then((result) => {
-      console.log(" xoa thanh cong");
-    })
-    .then(()=> {
-      this.props.getListCart(this.props.user.idtk, this.props.user.token)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  handleReductionCart = () => {
+      if(this.props.cart.soluong > 1){
+        cartService
+          .reductionCart(
+            this.props.user.idtk,
+            this.props.cart.idsp,
+            this.props.user.token
+          )
+          .then((result) => {
+            console.log("reduceCart success");
+          })
+          .then(() => {
+            this.props.getListCart(this.props.user.idtk, this.props.user.token);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
   }
 
+  handleIncreaseCart = () => {
+    // console.log(this.props.user.idtk);
+    // console.log(this.props.cart.idsp);
+    cartService
+      .increaseCart(
+        this.props.user.idtk,
+        this.props.cart.idsp,
+        this.props.user.token
+      )
+      .then((result) => {
+        console.log("increaseCart success");
+      })
+      .then(() => {
+        this.props.getListCart(this.props.user.idtk, this.props.user.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  handleDeleteCart = () => {
+    cartService
+      .removeCart(this.props.cart.idcart, this.props.user.token)
+      .then((result) => {
+        console.log(" xoa thanh cong");
+      })
+      .then(() => {
+        this.props.getListCart(this.props.user.idtk, this.props.user.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     // console.log(this.props.user);
@@ -53,15 +93,25 @@ class CartItem extends Component {
           </div>
           <div className="cart_sl">
             <div className="input_number_product custom-btn-number">
-              <button className="btn_num num_1 button button_qty">-</button>
+              <button
+                className="btn_num num_1 button button_qty"
+                onClick={this.handleReductionCart}
+              >
+                -
+              </button>
               <input
                 type="text"
                 id="quantity-detail"
                 name="quantity"
-                defaultValue={cart.soluong}
+                value={cart.soluong}
                 className="form-control prd_quantity"
               />
-              <button className="btn_num num_2 button button_qty">+</button>
+              <button
+                className="btn_num num_2 button button_qty"
+                onClick={this.handleIncreaseCart}
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="cart6">
@@ -77,7 +127,7 @@ class CartItem extends Component {
               </span>
             </span>
             <a
-              style={{cursor:"pointer"}}
+              style={{ cursor: "pointer" }}
               className="button remove-item remove-item-cart"
               title="Xóa"
               onClick={this.handleDeleteCart}

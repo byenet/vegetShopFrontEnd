@@ -17,11 +17,11 @@ class QuanLyUser extends Component {
         super(props);
         this.state = {
         columns: [
-            {
-                title:"ID",
-                field:"idtk", 
-                editable: "never"
-            },
+            // {
+            //     title:"ID",
+            //     field:"idtk", 
+            //     editable: "never"
+            // },
             {
                 title: "Họ tên",
                 field: "tentk",
@@ -63,11 +63,11 @@ class QuanLyUser extends Component {
                 onRowAdd: (newData) =>
                     new Promise((resolve) => {
                     let user = {
-                        tentk: newData.tentk,
-                        email: newData.email,
-                        phone: newData.phone,
-                        pass: newData.pass,
-                        phanquyen: newData.phanquyen,
+                      tentk: newData.tentk,
+                      email: newData.email,
+                      phone: newData.phone,
+                      pass: newData.pass,
+                      phanquyen: 0,
                     };
                     let token = cookieService.get("tokenAdmin");
                     setTimeout(() => {
@@ -105,7 +105,7 @@ class QuanLyUser extends Component {
                         tentk: newData.tentk,
                         email: newData.email,
                         phone: newData.phone,
-                        pass: newData.pass,
+                        // pass: newData.pass,
                         phanquyen: newData.phanquyen,
                     };
                     let token = cookieService.get("tokenAdmin");

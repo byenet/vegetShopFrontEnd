@@ -52,10 +52,10 @@ class QuanLySanPham extends Component {
     }
 
     render() {
-        console.log(this.props.ListAllSP);
+        // console.log(this.props.ListAllSP);
         return (
         <MaterialTable
-            title="Danh Sách Người Dùng"
+            title="Danh Sách Sản Phẩm"
             columns={this.state.columns}
             data={this.props.ListAllSP}
             options={{

@@ -13,29 +13,29 @@ class DetailProduct extends Component {
   handleAddCartDetail = () => {
     let { user } = this.props;
     let { product } = this.props;
-    console.log(user);
-    console.log(product);
-    // cartService
-    //   .addCart(user.idtk, product.idsp, user.token)
-    //   .then(() => {
-    //     this.props.getListCart(user.idtk, user.token);
-    //   })
-    //   .then((result) => {
-    //     Swal.fire({
-    //       icon: "success",
-    //       title: "Đã thêm vào giỏ hàng",
-    //       text: "",
-    //       timer: 2000,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     Swal.fire({
-    //       icon: "error",
-    //       title: "Vui lòng đăng nhập trước khi đặt hàng",
-    //       text: "",
-    //       timer: 2000,
-    //     });
-    //   });
+    // console.log(user);
+    // console.log(product);
+    cartService
+      .addCart(user.idtk, product.idsp, user.token)
+      .then(() => {
+        this.props.getListCart(user.idtk, user.token);
+      })
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Đã thêm vào giỏ hàng",
+          text: "",
+          timer: 2000,
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Vui lòng đăng nhập trước khi đặt hàng",
+          text: "",
+          timer: 2000,
+        });
+      });
   };
 
   render() {
@@ -141,7 +141,7 @@ class DetailProduct extends Component {
                       <div className="button_actions">
                         <button
                           className="button_gradient btn btn_add_cart btn-cart add_to_cart btn_base"
-                          onClick={this.handleAddCartDetail()}
+                          onClick={this.handleAddCartDetail}
                         >
                           {/* <span className="btn-image"></span> */}
                           <span className="btn-content">Thêm vào giỏ hàng</span>

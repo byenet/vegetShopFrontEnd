@@ -4,8 +4,30 @@ import * as action from "../../../Redux/Actions/cardActions"
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
 import NumberFormat from "react-number-format";
-
+import { cartService } from "../../../Services/";
+import Swal from "sweetalert2";
+import * as actionCart from "../../../Redux/Actions/cardActions";
 class CarlList extends Component {
+
+  handleBook = () => {
+    // console.log(this.props.user.idtk);
+    cartService.billCart(this.props.user.idtk, this.props.user.token)
+    .then((result) => {
+      Swal.fire({
+        icon: "success",
+        title: "Đặt hàng thành công",
+        text: "",
+        timer: 2000,
+      });
+    })
+    .then(() => {
+      this.props.getListCart(this.props.user.idtk, this.props.user.token);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+  }
 
   renderCart = () => {
     let {cart} = this.props;
@@ -91,9 +113,9 @@ class CarlList extends Component {
                           <strong>
                             <span className="totals_price price">
                               <NumberFormat
-                                value={ parseInt(cart.reduce((tongGia, cartItem) => {
-                                  return (tongGia += cartItem.tonggia);
-                                }, 0))}
+                                value={cart.reduce((tongGia, item, index) => {
+                                return (tongGia += parseInt(item.tonggia))
+                              },0)}
                                 displayType={"text"}
                                 thousandSeparator={true}
                               />
@@ -110,6 +132,7 @@ class CarlList extends Component {
                         className="btn btn-primary button btn-proceed-checkout button_gradient"
                         title="Tiến hành đặt hàng"
                         type="button"
+                        onClick={this.handleBook}
                       >
                         <span>Đặt hàng ngay</span>
                       </button>
@@ -128,7 +151,17 @@ class CarlList extends Component {
 const mapStateToProps = state => {
   return {
     cart: state.cartReducer.cart,
+    user: state.userReducer.user
   };
 }
 
-export default connect(mapStateToProps)(CarlList)
+const mapDispatchToProps = dispatch => {
+  return {
+    getListCart: (id, token) => {
+      dispatch(actionCart.actGetListCart(id, token))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarlList)
