@@ -14,3 +14,8 @@ export const GET_DETAIL_PRODUCT = "GET_DETAIL_PRODUCT";
 export const GET_INFO_USER = "GET_INFO_USER";
 export const RESET_USER_LOGIN = "RESET_USER_LOGIN";
 export const GET_LIST_USER = "GET_LIST_USER";
+
+// cart 
+
+export const GET_LIST_CART = "GET_LIST_CART";
+export const RESET_LIST_CART = "RESET_LIST_CART";

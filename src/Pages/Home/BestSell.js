@@ -30,6 +30,7 @@ export default class BestSell extends Component {
                             <img
                                 className="lazyload loaded "
                                 src="./img/anh_vai.jpg"
+                                alt = ""
                             />
                             </a>
                             <div className="product-action">
@@ -100,6 +101,7 @@ export default class BestSell extends Component {
                             <img
                                 className="lazyload loaded "
                                 src="./img/qua_oc_cho.jpg"
+                                alt=""
                             />
                             </a>
                             <div className="product-action">
@@ -170,6 +172,7 @@ export default class BestSell extends Component {
                             <img
                                 className="lazyload loaded "
                                 src="./img/dau_tay.jpg"
+                                alt = ""
                             />
                             </a>
                             <div className="product-action">
@@ -240,6 +243,7 @@ export default class BestSell extends Component {
                             <img
                                 className="lazyload loaded "
                                 src="./img/anh_tao.jpg"
+                                alt = ""
                             />
                             </a>
                             <div className="product-action">

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 export default class Carousel extends Component {
   render() {
     return (
-      <section classname="carousel_owl container-fluid">
+      <section className="carousel_owl container-fluid">
         <div
           id="carouselExampleControls"
           className="carousel slide"

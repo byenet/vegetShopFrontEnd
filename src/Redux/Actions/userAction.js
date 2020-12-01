@@ -69,9 +69,9 @@ export const actResetUserLogin = (user) => {
 };
 
 
-export const actGetListUser = () => {
+export const actGetListUser = (token) => {
     return dispatch => {
-        userService.listUser()
+        userService.listUser(token)
         .then(result => {
             dispatch({
                 type: ActionType.GET_LIST_USER,

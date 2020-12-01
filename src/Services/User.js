@@ -46,10 +46,11 @@ class UserService {
       });
     };
 
-    listUser = () => {
+    listUser = (token) => {
       return Axios({
         method: "GET",
         url: "/getalltaikhoan",
+        headers: { Authorization: "Bearer" + token },
       });
     }
 }

@@ -24,7 +24,7 @@ export default class About extends Component {
                 <div className="col-lg-3 col-sm-6">
                 <div className="uti_body">
                     <span className="icon">
-                    <img src="./img/icon_uti_1.png" alt />
+                    <img src="./img/icon_uti_1.png" alt="" />
                     </span>
                     <div className="content">
                     <h4 className="title">Trang trại hữu cơ</h4>
@@ -37,7 +37,7 @@ export default class About extends Component {
                 <div className="col-lg-3 col-sm-6">
                 <div className="uti_body">
                     <span className="icon">
-                    <img src="./img/icon_uti_2.png" alt />
+                    <img src="./img/icon_uti_2.png" alt="" />
                     </span>
                     <div className="content">
                     <h4 className="title">Thực vật sạch</h4>
@@ -50,7 +50,7 @@ export default class About extends Component {
                 <div className="col-lg-3 col-sm-6">
                 <div className="uti_body">
                     <span className="icon">
-                    <img src="./img/icon_uti_3.png" alt />
+                    <img src="./img/icon_uti_3.png" alt="" />
                     </span>
                     <div className="content">
                     <h4 className="title">An toàn sinh học</h4>
@@ -63,7 +63,7 @@ export default class About extends Component {
                 <div className="col-lg-3 col-sm-6">
                 <div className="uti_body">
                     <span className="icon">
-                    <img src="./img/icon_uti_4.png" alt />
+                    <img src="./img/icon_uti_4.png" alt="" />
                     </span>
                     <div className="content">
                     <h4 className="title">Đa dạng sinh học</h4>

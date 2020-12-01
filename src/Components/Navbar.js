@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from "react-router-dom";
-import Login from '../Pages/Home/user/Login';
+// import Login from '../Pages/Home/user/Login';
 import logo from "../Assets/img/logo.png";
 import { connect } from "react-redux";
 import {cookieService} from "../Services"
-import * as action from "../Redux/Actions/userAction"
+import * as actionUser from "../Redux/Actions/userAction"
+import * as actionCart from "../Redux/Actions/cardActions"
 import Swal from "sweetalert2";
 class Navbar extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class Navbar extends Component {
     };
     if (token) {
       this.props.setUserLogin(userLog);
+      this.props.getListCart(idtk, token);
     }
   }
 
@@ -32,6 +34,7 @@ class Navbar extends Component {
       cookieService.remove("idtk", { path: "/" });
       cookieService.remove("phanquyen", { path: "/" });
       this.props.setUserLogin({});
+      this.props.setListCart([]);
       const url = this.props.match;
       // console.log(url);
 
@@ -48,11 +51,6 @@ class Navbar extends Component {
           title: "Đã đăng xuất",
           text: "",
           timer: 2000,
-          timerProgressBar: true,
-          onBeforeOpen: () => {
-            Swal.showLoading();
-            timerInterval = setInterval(() => {}, 100);
-          },
 
           onClose: () => {
             history.push(`/`);
@@ -102,7 +100,8 @@ class Navbar extends Component {
   };
 
   render() {
-    console.log(this.props.user.tentk);
+    // console.log(this.props.user.tentk);
+    // console.log(this.props.cart);
     return (
       <header className="header header-s">
         <div className="container header-content">
@@ -172,28 +171,20 @@ class Navbar extends Component {
                         <div className="top-cart-contain">
                           <div className="mini-cart ">
                             <div className="heading-cart cart_header">
-                              <a
+                              <NavLink
                                 className="img_hover_cart"
-                                href="#"
+                                to="/cart"
                                 title="Giỏ hàng"
                               >
                                 <div className="icon_hotline visible_index">
                                   <i className="fas fa-shopping-basket" />
                                   <span className="count_item button_gradient">
-                                    0
+                                    {this.props.cart.reduce((tongSoLuong, cartItem)=> {
+                                      return tongSoLuong += cartItem.soluong 
+                                    },0)}
                                   </span>
                                 </div>
-                              </a>
-                            </div>
-                            <div className="top-cart-content">
-                              <ul
-                                id="cart-sidebar"
-                                className="mini-products-list"
-                              >
-                                <div className="no-item">
-                                  <p>Không có sản phẩm nào trong giỏ hàng.</p>
-                                </div>
-                              </ul>
+                              </NavLink>
                             </div>
                           </div>
                         </div>
@@ -213,6 +204,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
+    cart: state.cartReducer.cart,
     user: state.userReducer.user
   };
 }
@@ -220,7 +212,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setUserLogin: user => {
-      dispatch(action.actResetUserLogin(user))
+      dispatch(actionUser.actResetUserLogin(user))
+    },
+    getListCart: (id,token) => {
+      dispatch(actionCart.actGetListCart(id,token))
+    },
+    setListCart: (cart) => {
+      dispatch(actionCart.actResetListCart(cart))
     }
   }
 }

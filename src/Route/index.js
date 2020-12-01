@@ -2,8 +2,9 @@ import DetailProduct from "../Components/DetailProduct";
 import Login from "../Pages/Home/user/Login";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Home/user/Register";
-import LoginAdmin from "../Pages/Admin/LoginAdmin";
+// import LoginAdmin from "../Pages/Admin/LoginAdmin";
 import Dashboard from "../Pages/Admin/Dashboard";
+import CardList from "../Pages/Home/Cart/CarlList"
 
 
 
@@ -16,20 +17,23 @@ const routersHome = [
   {
     path: "/login",
     exact: false,
-    component: Login
+    component: Login,
   },
   {
     path: "/register",
     exact: false,
-    component: Register
+    component: Register,
   },
   {
     path: "/detail-product/:id",
     exact: false,
-    component: DetailProduct
+    component: DetailProduct,
   },
-  
-  
+  {
+    path: "/cart",
+    exact: false,
+    component: CardList,
+  },
 ];
 
 const routesAdmin = [

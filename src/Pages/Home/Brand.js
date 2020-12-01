@@ -20,42 +20,42 @@ export default class Brand extends Component {
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_1.png" alt />
+                    <img src="./img/brand_1.png" alt="" />
                     </a>
                 </div>
                 </div>
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_2.png" alt />
+                    <img src="./img/brand_2.png" alt="" />
                     </a>
                 </div>
                 </div>
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_3.png" alt />
+                    <img src="./img/brand_3.png" alt="" />
                     </a>
                 </div>
                 </div>
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_4.png" alt />
+                    <img src="./img/brand_4.png" alt="" />
                     </a>
                 </div>
                 </div>
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_5.png" alt />
+                    <img src="./img/brand_5.png" alt="" />
                     </a>
                 </div>
                 </div>
                 <div className="col-sm-4 col-md-2">
                 <div className="item_brand">
                     <a className="img_" href="#">
-                    <img src="./img/brand_1.png" alt />
+                    <img src="./img/brand_1.png" alt="" />
                     </a>
                 </div>
                 </div>

@@ -100,6 +100,7 @@ export default class News extends Component {
                         <img
                         className="lazyload loaded"
                         src="./img/img_blog1.jpg"
+                        alt=""
                         />
                     </a>
                     <div className="date_blog">

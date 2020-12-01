@@ -8,7 +8,9 @@ import {cookieService} from "../../Services/"
 
 class QuanLyUser extends Component {
     componentDidMount() {
-        this.props.getListUser();
+         let token = cookieService.get("tokenAdmin");
+        //  console.log(token);
+        this.props.getListUser(token);
     }
 
     constructor(props) {
@@ -47,6 +49,7 @@ class QuanLyUser extends Component {
     }
 
     render() {
+        console.log(this.props.userList);
         return (
         <MaterialTable
             title="Danh Sách Người Dùng"
@@ -177,8 +180,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return { 
-        getListUser: () => {
-            dispatch(action.actGetListUser())
+        getListUser: (token) => {
+            dispatch(action.actGetListUser(token))
         }
     }
 }

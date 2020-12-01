@@ -1,15 +1,48 @@
 import React, { Component } from 'react'
 import NumberFormat from "react-number-format";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import * as actionCart from "../Redux/Actions/cardActions";
+import { connect } from "react-redux";
+import {cartService} from "../Services/"
+import Swal from "sweetalert2";
 
+class ProductItem extends Component {
 
-export default class ProductItem extends Component {
+    handleAddCart = () => {
+      let {user} = this.props;
+      let { product } = this.props;
+      // console.log(user);
+      // console.log(product);
+      cartService
+        .addCart(user.idtk, product.idsp, user.token)
+        .then((result) => {
+          Swal.fire({
+            icon: "success",
+            title: "Đã thêm vào giỏ hàng",
+            text: "",
+            timer: 2000,
+          });
+        })
+        .then(() => {
+          this.props.getListCart(user.idtk, user.token);
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Vui lòng đăng nhập trước khi đặt hàng",
+            text: "",
+            timer: 2000,
+          });
+        });
+      
+      
+    }
 
     render() {
         let{product} = this.props;
-        console.log("Log anh: ");
-        console.log(product.hinhanh);
-
+        // console.log(string1.slice(string1.lastIndexOf("\\"), string1.length));
+        let linkAnh = (product.hinhanh.slice(product.hinhanh.lastIndexOf("\\"), product.hinhanh.length));
+        // console.log(linkAnh);
         return (
           <>
             {/*products */}
@@ -24,9 +57,8 @@ export default class ProductItem extends Component {
                     >
                       <img
                         className="lazyload loaded "
-                        // src="./img/chanh_tuoi.jpg"
-                        // src="file:///C:/Users/nhathuy/Desktop/vegetshop3/VegetableShop/VegetableShop/uploads/muc.jpg"
-                        src = {`./img/${product.idsp}.jpg`}
+                        src={`./img${linkAnh}`}
+                        alt=""
                       />
                     </NavLink>
                     <div className="product-action">
@@ -45,6 +77,7 @@ export default class ProductItem extends Component {
                             className="btn btn-cart"
                             title="Tùy chọn"
                             type="button"
+                            onClick={this.handleAddCart}
                           >
                             <span className="fas fa-shopping-basket" />
                           </button>
@@ -109,7 +142,7 @@ export default class ProductItem extends Component {
                           <img
                             id="product-featured-image-quickview"
                             className="img-responsive product-featured-image-quickview"
-                            src="./img/chanh_tuoi.jpg"
+                            src={`./img${linkAnh}`}
                             alt="quickview"
                           />
                         </a>
@@ -157,7 +190,7 @@ export default class ProductItem extends Component {
                         </p>
                       </div>
                     </div>
-                    <form
+                    {/* <form
                       action
                       method="post"
                       encType="multipart/form-data"
@@ -166,11 +199,11 @@ export default class ProductItem extends Component {
                     >
                       <div className="quantity_wanted_p">
                         <div className="button_actions clearfix">
-                          <button
-                            type="submit"
-                            className="button_gradient btn btn_base"
-                          >
-                            <span className="btn-content">
+                          <button className="button_gradient btn btn_base">
+                            <span
+                              className="btn-content"
+                              onClick={this.handleAddCart}
+                            >
                               Thêm vào giỏ hàng
                             </span>
                           </button>
@@ -182,15 +215,15 @@ export default class ProductItem extends Component {
                         name="variantId"
                         defaultValue={23813702}
                       />
-                    </form>
-                    <div className="call_phone_buy f-left w_100">
+                    </form> */}
+                    {/* <div className="call_phone_buy f-left w_100">
                       <div>
                         <span>
                           Gọi đặt mua: <a href="tel:0359329688">0359329688</a>{" "}
                           để nhanh chóng đặt hàng
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <a
@@ -207,3 +240,19 @@ export default class ProductItem extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getListCart: (id,token) => {
+      dispatch(actionCart.actGetListCart(id,token));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);
