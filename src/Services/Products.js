@@ -49,6 +49,8 @@ class ProductService {
       url: `/sanpham=${id}`,
     });
   };
+
+  
 }
 
 export default ProductService;

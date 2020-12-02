@@ -26,7 +26,9 @@ export const signupUserSchema = yup.object().shape({
   tentk: yup
     .string()
     .required("Họ và tên không được để trống")
-    .matches(/^[a-zA-Z\s]+$/, "Họ và tên chỉ bao gồm chữ cái"),
+    .min(4, "Họ và tên phải nhiều hơn 4 ký tự")
+    .max(16, "Họ và tên phải nhỏ hơn 30 ký tự")
+    .matches(/^[a-zA-Z\s]{4,30}$/, "Họ và tên chỉ bao gồm chữ cái"),
 });
 class UserService {
 
@@ -50,7 +52,7 @@ class UserService {
       return Axios({
         method: "GET",
         url: "/getalltaikhoan",
-        headers: { Authorization: "Bearer" + token },
+        headers: { Authorization: "Bearer " + token },
       });
     }
 }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { signupUserSchema } from "../../../Services/User";
-import { connect } from "react-redux";
-import { NavLink, withRouter } from "react-router-dom";
+// import { connect } from "react-redux";
+import { NavLink} from "react-router-dom";
 import { userService } from "../../../Services";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
 
 export default class Register extends Component {
+
   _handleSubmit = (values) => {
     // console.log(values);
     let {history} = this.props;

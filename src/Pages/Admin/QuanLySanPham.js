@@ -4,7 +4,7 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import * as action from "../../Redux/Actions/productAction"
-
+import { cookieService } from "../../Services/";
 class QuanLySanPham extends Component {
     componentDidMount() {
         this.props.getListAllSP();
@@ -22,6 +22,19 @@ class QuanLySanPham extends Component {
             {
               title: "Tên SP",
               field: "tensp",
+            },
+            {
+              title: "Hình ảnh",
+              field: "hinhanh",
+              render: (rowData) => (
+                <img
+                  src={`./img${rowData.hinhanh.slice(
+                    rowData.hinhanh.lastIndexOf("\\"),
+                    rowData.hinhanh.length
+                  )}`}
+                  style={{ width: 150 }}
+                />
+              ),
             },
             {
               title: "Giá",
@@ -46,6 +59,9 @@ class QuanLySanPham extends Component {
             {
               title: "Chi tiết",
               field: "chitiet",
+              cellStyle: {
+                width: "400px",
+              },
             },
           ],
         };
@@ -140,35 +156,35 @@ class QuanLySanPham extends Component {
                 //     }, 1000);
                 //     }),
 
-                // onRowDelete: (oldData) =>
-                //     new Promise((resolve, reject) => {
-                //     setTimeout(() => {
-                //     let token = cookieService.get("tokenAdmin");
-                //         resolve();
-                //         return Axios({
-                //         method: "DELETE",
-                //         url: `/deletetaikhoan=${oldData.idtk}`,
-                //         headers: { Authorization: "Bearer " + token },
-                //         })
-                //         .then((result) => {
-                //             Swal.fire({
-                //             icon: "success",
-                //             title: "Xóa thành công!",
-                //             text: "",
-                //             timer: 2000,
-                //             });
-                //             this.props.getListUser();
-                //         })
-                //         .catch((err) => {
-                //             Swal.fire({
-                //             icon: "error",
-                //             title: "Xóa thất bại!",
-                //             text: err.response.data,
-                //             timer: 3000,
-                //             });
-                //         });
-                //     }, 1000);
-                //     }),
+                onRowDelete: (oldData) =>
+                    new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                    let token = cookieService.get("tokenAdmin");
+                        resolve();
+                        return Axios({
+                          method: "DELETE",
+                          url: `/xoasanpham=${oldData.idsp}`,
+                          headers: { Authorization: "Bearer " + token },
+                        })
+                          .then((result) => {
+                            Swal.fire({
+                              icon: "success",
+                              title: "Xóa thành công!",
+                              text: "",
+                              timer: 2000,
+                            });
+                            this.props.getListAllSP();
+                          })
+                          .catch((err) => {
+                            Swal.fire({
+                              icon: "error",
+                              title: "Xóa thất bại!",
+                              text: err.response.data,
+                              timer: 3000,
+                            });
+                          });
+                    }, 1000);
+                    }),
             }}
         />
         );
