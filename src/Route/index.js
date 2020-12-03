@@ -5,6 +5,7 @@ import Register from "../Pages/Home/user/Register";
 // import LoginAdmin from "../Pages/Admin/LoginAdmin";
 import Dashboard from "../Pages/Admin/Dashboard";
 import CardList from "../Pages/Home/Cart/CarlList"
+import QuanLySanPham from "../Pages/Admin/QuanLySanPham";
 
 
 

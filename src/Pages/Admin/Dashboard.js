@@ -72,10 +72,10 @@ export default function Dashboard() {
         <Tab label="Quản lý user" {...a11yProps(0)} />
         <Tab label="Quản lý sản phẩm" {...a11yProps(1)} />
       </Tabs>
-      <TabPanel className="w-100" value={value} index={0}>
+      <TabPanel className="w-100" value={value} index={0} >
         <QuanLyUser/>
       </TabPanel>
-      <TabPanel className="w-100" value={value} index={1}>
+      <TabPanel className="w-100" value={value} index={1} >
         <QuanLySanPham/>
       </TabPanel>
     </div>

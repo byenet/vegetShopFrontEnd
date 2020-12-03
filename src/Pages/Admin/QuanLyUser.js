@@ -16,40 +16,70 @@ class QuanLyUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        columns: [
+          columns: [
             // {
             //     title:"ID",
-            //     field:"idtk", 
+            //     field:"idtk",
             //     editable: "never"
             // },
             {
-                title: "Họ tên",
-                field: "tentk",
+              title: "Họ tên",
+              field: "tentk",
+              validate: (rowData) =>
+                /^[a-zA-Z\s]{4,30}$/.test(rowData.tentk)
+                  ? true
+                  : {
+                      isValid: false,
+                      helperText:
+                        "tên chỉ được bao gồm ký tự chữ cái và từ 4 đến 30 ký tự",
+                    },
             },
             {
-                title: "Email",
-                field: "email",
+              title: "Email",
+              field: "email",
+              validate: (rowData) =>
+                /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(rowData.email)
+                  ? true
+                  : {
+                      isValid: false,
+                      helperText: "email không đúng định dạng",
+                    },
             },
             {
-                title: "Điện thoại",
-                field: "phone",
+              title: "Điện thoại",
+              field: "phone",
+              validate: (rowData) =>
+                /^(03|05|07|08|09)+([0-9]{8})$/.test(rowData.phone)
+                  ? true
+                  : {
+                      isValid: false,
+                      helperText: "Số điện thoại không hợp lệ",
+                    },
             },
             {
-                title: "Mật khẩu",
-                field: "pass",
-                // editable: "never"
+              title: "Mật khẩu",
+              field: "pass",
+              editable: "onAdd",
+            //   validate: (rowData) =>
+            //     /^[a-zA-Z0-9]{4,16}$/.test(rowData.pass)
+            //       ? true
+            //       : {
+            //           isValid: false,
+            //           helperText: "Mật khẩu chỉ được bao gồm chữ cái và số và từ 4 đến 16 ký tự",
+            //         },
             },
             {
-                title: "Loại người dùng",
-                field: "phanquyen",
-                lookup: { 0: "Khách hàng", 1: "Quản trị" },
+              title: "Loại người dùng",
+              field: "phanquyen",
+              lookup: { 0: "Khách hàng", 1: "Quản trị" },
+            //   editable: "onAdd",
             },
-        ],
+          ],
         };
     }
 
     render() {
-        console.log(this.props.userList);
+        // console.log(this.props.userList);
         return (
         <MaterialTable
             title="Danh Sách Người Dùng"
